@@ -1,0 +1,21 @@
+MODULE main
+VAR
+  state : {b1_notb2_notb3, notb1_b2_notb3, notb1_notb2_b3};
+ASSIGN
+  init(state) := {b1_notb2_notb3, notb1_b2_notb3, notb1_notb2_b3};
+  next(state) := case
+    state = b1_notb2_notb3 : {notb1_b2_notb3, notb1_notb2_b3};
+    state = notb1_b2_notb3 : {b1_notb2_notb3, notb1_notb2_b3};
+    state = notb1_notb2_b3 : {b1_notb2_notb3, notb1_b2_notb3};
+  esac;
+DEFINE
+  b1 := state = b1_notb2_notb3;
+  b2 := state = notb1_b2_notb3;
+  b3 := state = notb1_notb2_b3;
+
+-- Pas de court circuit
+LTLSPEC G((b1 & !b2 & !b3) | (b2 & !b1 & !b3) | (b3 & !b1 & !b2))
+-- Continuité du circuit
+LTLSPEC G(b1 | b2 | b3)
+-- Changement de batterie
+LTLSPEC G((b1 -> X !b1) & (b2 -> X !b2) & (b3 -> X !b3))
