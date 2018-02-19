@@ -1,0 +1,25 @@
+MODULE main
+VAR
+  p : boolean;
+  p1 : boolean;
+  p2 : boolean;
+  q1 : boolean;
+  q2 : boolean;
+ASSIGN
+  init(p) := TRUE;
+  init(p1) := TRUE;
+  init(p2) := TRUE;
+  init(q1) := TRUE;
+  init(q2) := FALSE;
+  next(p) := p;
+  next(p1) := p1;
+  next(p2) := p2;
+  next(q1) := !q1;
+  next(q2) := !q2;
+
+-- Il y a toujours p
+LTLSPEC G(p)
+
+-- S'il y a une infinité de p1 et une infinité de p2, alors toute occurrence
+-- de q1 est suivie d'une occurrence de q2
+LTLSPEC G(F(p1)) & G(F(p2)) -> G(q1 -> F(q2))

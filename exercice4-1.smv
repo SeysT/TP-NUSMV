@@ -1,0 +1,28 @@
+MODULE main
+VAR
+  p : boolean;
+  q : boolean;
+  p1 : boolean;
+  p2 : boolean;
+  q1 : boolean;
+  q2 : boolean;
+ASSIGN
+  init(p) := TRUE;
+  init(q) := FALSE;
+  next(p) := !p;
+  next(q) := !q;
+
+-- Il y a p une infinité de fois
+LTLSPEC G(F(p))
+
+-- Il n'y a jamais p et q simultanément
+LTLSPEC G(!(p & q))
+
+-- Après chaque occurence de p il y a au moins une occurrence de q
+LTLSPEC G(p -> F(q))
+
+-- Avant chaque occurrence de p il y a au moins une occurrence de q
+LTLSPEC !(!q) U (p & !q)
+
+-- Entre chaque pair d'occurrence de p il y a au moins une occurrence de q
+LTLSPEC G ((p & X F p) -> X (! p U q))
