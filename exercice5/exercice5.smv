@@ -12,48 +12,78 @@ INIT
   !feuille & !lombric & !millepatte & !sauterelle
 
 TRANS
-  (feuille & lombric & millepatte & sauterelle ->
-      !next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle) |
-      !next(feuille) & next(lombric) & !next(millepatte) & next(sauterelle) |
-      !next(feuille) & next(lombric) & next(millepatte) & !next(sauterelle) |
-      !next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (feuille & lombric & millepatte & !sauterelle ->
-      !next(feuille) & !next(lombric) & next(millepatte) & !next(sauterelle) |
-      !next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (feuille & lombric & !millepatte & sauterelle ->
-      !next(feuille) & !next(lombric) & !next(millepatte) & next(sauterelle) |
-      !next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (feuille & lombric & !millepatte & !sauterelle ->
-      !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (feuille & !lombric & millepatte & sauterelle ->
-      !next(feuille) & !next(lombric) & !next(millepatte) & next(sauterelle) |
-      !next(feuille) & !next(lombric) & next(millepatte) & !next(sauterelle) |
-      !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (feuille & !lombric & !millepatte & sauterelle ->
-      !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (feuille & !lombric & millepatte & !sauterelle ->
-      !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle))
-  & (!feuille & lombric & millepatte & !sauterelle ->
-      next(feuille) & next(lombric) & next(millepatte) & next(sauterelle))
-  & (!feuille & lombric & !millepatte & sauterelle ->
-      next(feuille) & next(lombric) & next(millepatte) & next(sauterelle))
-  & (!feuille & lombric & !millepatte & !sauterelle ->
-      next(feuille) & next(lombric) & next(millepatte) & !next(sauterelle) |
-      next(feuille) & next(lombric) & !next(millepatte) & next(sauterelle) |
-      next(feuille) & next(lombric) & next(millepatte) & next(sauterelle)) 
-  & (!feuille & !lombric & millepatte & sauterelle ->
-      next(feuille) & next(lombric) & next(millepatte) & next(sauterelle))
-  & (!feuille & !lombric & !millepatte & !sauterelle ->
-      (next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle)) |
-      (next(feuille) & !next(lombric) & next(millepatte) & !next(sauterelle)) |
-      (next(feuille) & !next(lombric) & !next(millepatte) & next(sauterelle)) |
-      (next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle)))
-  & (!feuille & !lombric & millepatte & !sauterelle ->
-      next(feuille) & next(lombric) & next(millepatte) & !next(sauterelle) |
-      next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle)) 
-  & (!feuille & !lombric & !millepatte & sauterelle ->
-      next(feuille) & next(lombric) & !next(millepatte) & next(sauterelle) |
-      next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle)) 
+  feuille & lombric & millepatte & sauterelle ->
+    !next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle) |
+    !next(feuille) & next(lombric) & !next(millepatte) & next(sauterelle) |
+    !next(feuille) & next(lombric) & next(millepatte) & !next(sauterelle) |
+    !next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle);
 
--- Au bout d'un moment le lombric, le millepatte et la sauterelle auront traversé
+TRANS
+  feuille & lombric & millepatte & !sauterelle ->
+    !next(feuille) & !next(lombric) & next(millepatte) & !next(sauterelle) |
+    !next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle);
+
+TRANS
+  feuille & lombric & !millepatte & sauterelle ->
+    !next(feuille) & !next(lombric) & !next(millepatte) & next(sauterelle) |
+    !next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle);
+
+TRANS
+  feuille & lombric & !millepatte & !sauterelle ->
+    !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle);
+
+TRANS
+  feuille & !lombric & millepatte & sauterelle ->
+    !next(feuille) & !next(lombric) & !next(millepatte) & next(sauterelle) |
+    !next(feuille) & !next(lombric) & next(millepatte) & !next(sauterelle) |
+    !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle);
+
+TRANS
+  feuille & !lombric & !millepatte & sauterelle ->
+    !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle);
+
+TRANS
+  feuille & !lombric & millepatte & !sauterelle ->
+    !next(feuille) & !next(lombric) & !next(millepatte) & !next(sauterelle);
+
+TRANS
+  !feuille & lombric & millepatte & !sauterelle ->
+    next(feuille) & next(lombric) & next(millepatte) & next(sauterelle);
+
+TRANS
+  !feuille & lombric & !millepatte & sauterelle ->
+    next(feuille) & next(lombric) & next(millepatte) & next(sauterelle);
+
+TRANS
+  !feuille & lombric & !millepatte & !sauterelle ->
+    next(feuille) & next(lombric) & next(millepatte) & !next(sauterelle) |
+    next(feuille) & next(lombric) & !next(millepatte) & next(sauterelle) |
+    next(feuille) & next(lombric) & next(millepatte) & next(sauterelle); 
+
+TRANS
+  !feuille & !lombric & millepatte & sauterelle ->
+    next(feuille) & next(lombric) & next(millepatte) & next(sauterelle);
+
+TRANS
+  !feuille & !lombric & !millepatte & !sauterelle ->
+    next(feuille) & next(lombric) & !next(millepatte) & !next(sauterelle) |
+    next(feuille) & !next(lombric) & next(millepatte) & !next(sauterelle) |
+    next(feuille) & !next(lombric) & !next(millepatte) & next(sauterelle) |
+    next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle);
+
+TRANS
+  !feuille & !lombric & millepatte & !sauterelle ->
+    next(feuille) & next(lombric) & next(millepatte) & !next(sauterelle) |
+    next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle); 
+
+TRANS
+  !feuille & !lombric & !millepatte & sauterelle ->
+    next(feuille) & next(lombric) & !next(millepatte) & next(sauterelle) |
+    next(feuille) & !next(lombric) & next(millepatte) & next(sauterelle); 
+
+-- Il existe un chemin pour leque le lombric, le millepatte et la sauterelle auront traversé à un moment
 SPEC EF(lombric & millepatte & sauterelle)
+
+-- On vérifie qu'aucun chemin ne mène à ce que la feuille ait traversé toute seule
+SPEC AG(!(feuille & !lombric & !millepatte & !sauterelle))
+SPEC AG(!(!feuille & lombric & millepatte & sauterelle))
