@@ -1,0 +1,46 @@
+-- Implémentation de l'algorithme auto-stabilisateur de Dijkstra
+-- On prend K = 7 et N = 5
+
+MODULE main
+VAR
+  drapeaux: array 0..4 of 0..6;
+DEFINE
+  K := 7;
+ASSIGN
+  init(drapeaux[0]) := {0, 1, 2, 3, 4, 5, 6};
+  init(drapeaux[1]) := {0, 1, 2, 3, 4, 5, 6};
+  init(drapeaux[2]) := {0, 1, 2, 3, 4, 5, 6};
+  init(drapeaux[3]) := {0, 1, 2, 3, 4, 5, 6};
+  init(drapeaux[4]) := {0, 1, 2, 3, 4, 5, 6};
+
+  next(drapeaux[0]) := case
+    drapeaux[0] = drapeaux[4] : (drapeaux[0] + 1) mod K;
+    TRUE : drapeaux[0];
+  esac;
+
+  next(drapeaux[1]) := case
+    drapeaux[1] != drapeaux[0] : drapeaux[0];
+    TRUE: drapeaux[1];
+  esac;
+
+  next(drapeaux[2]) := case
+    drapeaux[2] != drapeaux[1] : drapeaux[1];
+    TRUE: drapeaux[2];
+  esac;
+
+  next(drapeaux[3]) := case
+    drapeaux[3] != drapeaux[2] : drapeaux[2];
+    TRUE: drapeaux[3];
+  esac;
+
+  next(drapeaux[4]) := case
+    drapeaux[4] != drapeaux[3] : drapeaux[3];
+    TRUE: drapeaux[4];
+  esac;
+
+-- Chaque processus entre en section critique infiniment souvent
+LTLSPEC G(F(drapeaux[0] = drapeaux[4]))
+LTLSPEC G(F(drapeaux[1] != drapeaux[0]))
+LTLSPEC G(F(drapeaux[2] != drapeaux[1]))
+LTLSPEC G(F(drapeaux[3] != drapeaux[2]))
+LTLSPEC G(F(drapeaux[4] != drapeaux[3]))
