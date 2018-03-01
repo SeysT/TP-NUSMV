@@ -167,6 +167,65 @@ NuSMV exercice5/exercice5.smv
 -- specification AG !(((!feuille & lombric) & millepatte) & sauterelle)  is true
 ```
 
+## Exercice 6
+
+Parmis les formules données par l'énoncé, on a les équivalence suivante :
++ `AF phi | AF psi` et `AF (phi | psi)`
++ `AF ¬psi` et `¬EG psi`
++ `A[psi U A[phi U ro]]` et `A[A[psi U phi] U ro]`
++ `TRUE` et `AG phi -> EG phi`
+
+On peut attester de cela en utilisant NuSMV sur le fichier `exercice6/exercice6.smv` qui contient trois variables booléennes phi, psi et ro, et qui regarde l'équivalence entre les formules de l'énoncé :
+
+```
+NuSMV exercice6/exercice6.smv
+
+-- specification (EF phi <-> EG phi)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    phi = FALSE
+    psi = FALSE
+    ro = FALSE
+  -> State: 1.2 <-
+    phi = TRUE
+-- specification (AF !psi <-> !(EG psi))  is true
+-- specification (EF !psi <-> !(AF psi))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    phi = FALSE
+    psi = TRUE
+    ro = FALSE
+  -> State: 2.2 <-
+    psi = FALSE
+-- specification (TRUE <-> (AG phi -> EG phi))  is true
+-- specification (TRUE <-> (EG phi -> AG phi))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -- Loop starts here
+  -> State: 3.1 <-
+    phi = TRUE
+    psi = FALSE
+    ro = FALSE
+  -> State: 3.2 <-
+-- specification ((EF phi | EF psi) <-> EG (phi | psi))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    phi = FALSE
+    psi = FALSE
+    ro = FALSE
+  -> State: 4.2 <-
+    phi = TRUE
+-- specification ((AF phi | AF psi) <-> AF (phi | psi))  is true
+-- specification (A [ psi U A [ phi U ro ]  ]  <-> A [ A [ psi U phi ]  U ro ] )  is true
+```
+
 ## Exercice 7
 
 **Question 1** :
