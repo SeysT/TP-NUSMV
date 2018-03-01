@@ -1,0 +1,14 @@
+MODULE main
+VAR
+  phi: boolean;
+  psi: boolean;
+  ro: boolean;
+
+CTLSPEC EF(phi) <-> EG(phi);
+CTLSPEC EF(phi) | EF(psi) <-> EG(phi | psi);
+CTLSPEC AF(phi) | AF(psi) <-> AF(phi | psi);
+CTLSPEC AF(!psi) <-> !EG(psi);
+CTLSPEC EF(!psi) <-> !AF(psi);
+CTLSPEC A[psi U A[phi U ro]] <-> A[A[psi U phi] U ro];
+CTLSPEC TRUE <-> (AG(phi) -> EG(phi));
+CTLSPEC TRUE <-> (EG(phi) -> AG(phi));
