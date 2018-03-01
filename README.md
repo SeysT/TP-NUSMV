@@ -238,16 +238,17 @@ D'après l'énoncé le protocole a comme propriété que chaque processus à la 
 
 **Question 3** :
 
-Il a été choisi d'implémenter l'algorithme de Dijkstra avec des valeurs de K = 7 et N = 5 dans le fichier `exercice7/exercice7.smv`. Voici le résultat obtenu :
+Il a été choisi d'implémenter l'algorithme de Dijkstra avec des valeurs de K = 7 et N = 3 dans le fichier `exercice7/exercice7.smv`. Voici le résultat obtenu :
 
 ```
 NuSMV exercice7/exercice7.smv
 
--- specification  G ( F drapeaux[0] = drapeaux[4])  is true
--- specification  G ( F drapeaux[1] != drapeaux[0])  is true
--- specification  G ( F drapeaux[2] != drapeaux[1])  is true
--- specification  G ( F drapeaux[3] != drapeaux[2])  is true
--- specification  G ( F drapeaux[4] != drapeaux[3])  is true
+-- specification AG (AF (drapeaux[0] = drapeaux[1] & drapeaux[1] = drapeaux[2]))  is true
+-- specification AG (AF etats_critiques[0])  is true
+-- specification AG (AF etats_critiques[1])  is true
+-- specification AG (AF etats_critiques[2])  is true
+-- specification AF (AG ((etats_critiques[0] | etats_critiques[1]) | etats_critiques[2]))  is true
+-- specification AF (AG (etats_critiques[0] -> (((!etats_critiques[1] & !etats_critiques[2]) & (etats_critiques[1] -> (!etats_critiques[0] & !etats_critiques[2]))) & (etats_critiques[2] -> (!etats_critiques[0] & !etats_critiques[1])))))  is true
 ```
 
 **Question 4** :
