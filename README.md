@@ -27,7 +27,7 @@ NuSMV exercice1/exercice1-1.smv
 
 **Question 3**
 
-Comme nouvelles formules CTL, on peut proposer `SPEC AG(request)` et `SPEC AG(state = busy | state = ready)`.
+Comme nouvelles formules CTL, on peut proposer `CTLSPEC AG(request)` et `CTLSPEC AG(state = busy | state = ready)`.
 
 La première est bien évidemment fausse puisqu'elle vérifie que request est vrai tout le temps pour tout les chemins possibles. La secondes est vraie puisqu'elle vérifie que state est soit à busy soit à ready tout le temps et quelque soit le chemin emprunté. On peut vérifier ces affirmations en utilisant NuSMV sur le fichier `exercice2/exercice1-2.smv` qui est le modèle donné par l'énoncé avec les formules CTL utilisées ci-dessus.
 

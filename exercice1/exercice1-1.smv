@@ -9,4 +9,4 @@ ASSIGN
   TRUE : {ready,busy};
  esac;
 
-SPEC AG(request -> AF state = busy)
+CTLSPEC AG(request -> AF state = busy)

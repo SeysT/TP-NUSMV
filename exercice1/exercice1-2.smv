@@ -9,5 +9,5 @@ ASSIGN
   TRUE : {ready,busy};
  esac;
 
-SPEC AG(request)
-SPEC AG(state = busy | state = ready)
+CTLSPEC AG(request)
+CTLSPEC AG(state = busy | state = ready)
