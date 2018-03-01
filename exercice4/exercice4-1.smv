@@ -22,7 +22,7 @@ LTLSPEC G(!(p & q))
 LTLSPEC G(p -> F(q))
 
 -- Avant chaque occurrence de p il y a au moins une occurrence de q
-LTLSPEC !(!q) U (p & !q)
+LTLSPEC !q U (p & !q)
 
 -- Entre chaque pair d'occurrence de p il y a au moins une occurrence de q
 LTLSPEC G ((p & X F p) -> X (! p U q))
