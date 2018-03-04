@@ -46,5 +46,5 @@ CTLSPEC AF AG(
   & (etats_critiques[2] -> (!etats_critiques[0] & !etats_critiques[1])))
 )
 
--- Toutes les valeurs sont égales infiniment souvent à partir d'un moment
+-- Toutes les valeurs sont égales infiniment souvent
 CTLSPEC AG AF(drapeaux[0] = drapeaux[1] & drapeaux[1] = drapeaux[2])
