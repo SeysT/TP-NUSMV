@@ -230,11 +230,31 @@ Trace Type: Counterexample
 
 **Question 1** :
 
+La première étape de l'algorithme va être de se stabiliser pour arriver à un état à partir duquel seul un processus entre en état critique à la fois. Voici sur un exemple les étapes à réaliser pour arriver à cet état :
+
+![Exercice7-1-1](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-1.png) 
+
+![Exercice7-1-2](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-2.png) 
+
+![Exercice7-1-3](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-3.png) 
+
+![Exercice7-1-4](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-4.png) 
+
+![Exercice7-1-5](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-5.png) 
+
+A partir de cette étape, seul un processus va entrer dans son état critique à la fois. On arrive alors ici à une sorte de cycle où tous les processus vont mettre leur drapeau à égalité. Ensuite le processus 0 va incrémenter son drapeau, et le cycle va recommencer à l'infini. Ceci est illustré sur les figures suivantes.
+
+![Exercice7-1-6](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-6.png) 
+
+![Exercice7-1-7](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-1-7.png) 
+
 **Question 2** :
 
-D'après l'énoncé le protocole a comme propriété que chaque processus à la capacité d'entrer en section critique infiniment souvent. Cela peut se traduire en formule LTL en distinguant le processus 0 des autres processus. On a alors :
-+ Pour le processus 0 : `LTLSPEC G(F(drapeaux[0] = drapeaux[N - 1]))`.
-+ Pour les autres processus : `LTLSPEC G(F(drapeaux[i] = !drapeaux[i - 1]))`.
+D'après l'énoncé et la description du protocole faite ci-dessus, nous en arrivons au spécifications suivantes :
++ Chaque processus rentre en état critique infiniment souvent.
++ A partir d'un moment donné, au moins un des processus rentre en état critique.
++ A partir d'un moment, seul un processus à la fois entre en état critique.
++ Toutes les valeurs des drapeaux sont égales infiniment souvent.
 
 **Question 3** :
 
@@ -252,3 +272,23 @@ NuSMV exercice7/exercice7.smv
 ```
 
 **Question 4** :
+
+Il faut que K > N pour éviter que l'algorithme ne tombe dans un cycle et ne se stabilise pas à au plus un changement de drapeaux par étape. Ceci est illustré par le cycle ci-dessous.
+
+![Cycle1](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-1.png) 
+
+![Cycle2](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-2.png) 
+
+![Cycle3](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-3.png) 
+
+![Cycle4](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-4.png) 
+
+![Cycle5](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-5.png) 
+
+![Cycle6](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-6.png) 
+
+![Cycle7](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-7.png) 
+
+![Cycle8](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-8.png) 
+
+![Cycle1](https://raw.githubusercontent.com/SeysT/TP-NUSMV/master/Images/Exercice7-2-1.png) 
